@@ -1,18 +1,18 @@
 import java.nio.charset.StandardCharsets;
 
 public class Transfer {
-    public static int romeToArabTransfer(String Term) throws MyException {
-        byte[] asciiTerm = Term.getBytes(StandardCharsets.US_ASCII);
+    public static int romeToArabTransfer(String term) throws MyException {
+        byte[] asciiTerm = term.getBytes(StandardCharsets.US_ASCII);
         int sumTerm = 0;
         for (int i : asciiTerm) {
             sumTerm += i;
         }
         int arabDigit = 0;
-        int romeNumberAmount1 = RomeNumber.values().length;
-        int[] romeNumberAsciiArray = new int[romeNumberAmount1];
+        int romeNumberAmount = RomeNumber.values().length;
+        int[] romeNumberAsciiArray = new int[romeNumberAmount];
         int x = 0;
         for (RomeNumber romeNumber : RomeNumber.values()) {
-            for (; x < romeNumberAmount1; ) {
+            for (; x < romeNumberAmount; ) {
                 romeNumberAsciiArray[x] = romeNumber.getAsciiSum();
                 break;
             }

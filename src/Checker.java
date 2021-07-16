@@ -1,9 +1,15 @@
+import java.nio.charset.StandardCharsets;
+
 public class Checker {
     public static boolean isTermArabDigit(String term) {
         char[] termSymbols = term.toCharArray();
+        byte[] minArabAscii = Integer.toString(ArabDigitCondition.MIN_ARAB_DIGIT.getValue()).getBytes(StandardCharsets.UTF_8);
+        byte[] maxArabAscii = Integer.toString(ArabDigitCondition.MAX_ARAB_DIGIT.getValue()).getBytes(StandardCharsets.UTF_8);
         boolean isTermArabDigit = false;
         for (char i : termSymbols) {
-            if (i > 48 & i < 58) {
+            int minArabAsciiValue = minArabAscii[0];
+            int maxArabAsciiValue = maxArabAscii[0];
+            if ((int) i >= minArabAsciiValue & (int) i <= maxArabAsciiValue) {
                 isTermArabDigit = true;
             }
             return isTermArabDigit;
@@ -12,16 +18,28 @@ public class Checker {
     }
 
     public static boolean isTermFromRomeDigits(String term) {
-        char[] termSymbols = term.toCharArray();
         boolean isTermFromRomeDigits = false;
-        for (char i : termSymbols) {
-            if (i == 73 | i == 86 | i == 88) {
-                isTermFromRomeDigits = true;
+        byte[] asciiTerm = term.getBytes(StandardCharsets.US_ASCII);
+        int romeDigitConditionAmount = RomeDigitCondition.values().length;
+        int[] romeDigitConditionAsciiArray = new int[romeDigitConditionAmount];
+        int x = 0;
+        for (RomeNumber romeNumber : RomeNumber.values()) {
+            for (; x < romeDigitConditionAmount; ) {
+                romeDigitConditionAsciiArray[x] = romeNumber.getAsciiSum();
+                break;
             }
-            return isTermFromRomeDigits;
+            x++;
+        }
+        for (byte i : asciiTerm) {
+            for (int y : romeDigitConditionAsciiArray) {
+                if (i == y) {
+                    isTermFromRomeDigits = true;
+                }
+            }
         }
         return isTermFromRomeDigits;
     }
+
 
     public static boolean isTermRomeNumber(String term) throws MyException {
         boolean isTermRomeNumber = false;
@@ -38,9 +56,7 @@ public class Checker {
     }
 
     public static boolean isArabTermCheckUp(String term) throws MyException {
-        boolean isArabTermCheckUp;
-        isArabTermCheckUp = isTermArabDigit(term) && isArabTermInt(term) && isArabTermInConditions(term);
-        return isArabTermCheckUp;
+        return isTermArabDigit(term) && isArabTermInt(term) && isArabTermInConditions(term);
     }
 
     public static boolean isTermsFullCheckUp(String firstTerm, String secondTerm) throws MyException {
@@ -93,7 +109,7 @@ public class Checker {
 
     public static boolean isArabTermInConditions(String a) throws MyException {
         double term = Double.parseDouble(a);
-        if (term > 0 & term < 11) {
+        if (term >= ArabDigitCondition.MIN_ARAB_DIGIT.getValue() & term <= ArabDigitCondition.MAX_ARAB_DIGIT.getValue()) {
             return true;
         } else {
             throw new MyException("число за допустимыми пределами");
@@ -101,12 +117,22 @@ public class Checker {
     }
 
     public static boolean isOperationInConditions(String operation) throws MyException {
+        boolean isOperationInConditions = false;
         char[] symbolsOperation = operation.toCharArray();
-        if (symbolsOperation.length == 1 & (symbolsOperation[0] == '+' |
-                symbolsOperation[0] == '-' | symbolsOperation[0] == '*' | symbolsOperation[0] == '/')) {
-            return true;
+        if (symbolsOperation.length == 1) {
+            char a;
+            for (Operation operation1 : Operation.values()) {
+                a = operation1.getOperationSymbol();
+                if (symbolsOperation[0] == a) {
+                    isOperationInConditions = true;
+                    return isOperationInConditions;
+                } else {
+                    throw new MyException("несоответствующий оператор");
+                }
+            }
         } else {
             throw new MyException("неверный ввод оператора");
         }
+        return isOperationInConditions;
     }
 }
