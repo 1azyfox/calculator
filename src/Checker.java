@@ -1,4 +1,5 @@
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class Checker {
     public static boolean isTermArabDigit(String term)  {
@@ -16,11 +17,11 @@ public class Checker {
     public static boolean isTermFromRomeDigits(String term) {
         boolean isTermFromRomeDigits = false;
         byte[] asciiTerm = term.getBytes(StandardCharsets.US_ASCII);
-        int romeDigitConditionAmount = RomeDigitCondition.values().length;
+        int romeDigitConditionAmount = RomeNumber.values().length;
         int[] romeDigitConditionAsciiArray = new int[romeDigitConditionAmount];
         int x = 0;
         for (RomeNumber romeNumber : RomeNumber.values()) {
-            for (; x < romeDigitConditionAmount; ) {
+            while (x < romeDigitConditionAmount) {
                 romeDigitConditionAsciiArray[x] = romeNumber.getAsciiSum();
                 break;
             }
@@ -42,10 +43,8 @@ public class Checker {
         if (isTermFromRomeDigits(term)) {
             try {
                 Transfer.romeToArabTransfer(term);
-                isTermRomeNumber = true;
-                return isTermRomeNumber;
+                return true;
             } catch (MyException e) {
-                System.out.println("недопустимый ввод римского числа");
                 throw new MyException("недопустимый ввод римского числа");
 
             }

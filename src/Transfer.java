@@ -20,6 +20,15 @@ public class Transfer {
         }
         for (int y : romeNumberAsciiArray) {
             if (sumTerm == y) {
+                if (sumTerm == RomeNumber.IV.getAsciiSum() & sumTerm == RomeNumber.VI.getAsciiSum()) {
+                    if (asciiTerm[0] == RomeNumber.I.getAsciiSum()) {
+                        arabDigit = (FindOperation.findNumberInArray(romeNumberAsciiArray, sumTerm));
+                        return arabDigit;
+                    } else if (asciiTerm[0] == RomeNumber.V.getAsciiSum()) {
+                        arabDigit = 6;
+                        return arabDigit;
+                    }
+                }
                 arabDigit = (FindOperation.findNumberInArray(romeNumberAsciiArray, sumTerm));
             }
         }
@@ -29,9 +38,12 @@ public class Transfer {
         return arabDigit;
     }
 
-    public static StringBuilder arabToRomeTransfer(int answer) {
+    public static StringBuilder arabToRomeTransfer(int answer) throws MyException {
         StringBuilder sb = new StringBuilder();
         int a = answer / 10;
+        if (answer == 0) {
+            throw new MyException("невозможно вывести ноль в римских числах");
+        }
         if (a <= 3) {
             for (int i = 0; i < a; i++) {
                 sb.append('X');
