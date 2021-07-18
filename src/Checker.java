@@ -1,20 +1,16 @@
 import java.nio.charset.StandardCharsets;
 
 public class Checker {
-    public static boolean isTermArabDigit(String term) {
-        char[] termSymbols = term.toCharArray();
-        byte[] minArabAscii = Integer.toString(ArabDigitCondition.MIN_ARAB_DIGIT.getValue()).getBytes(StandardCharsets.UTF_8);
-        byte[] maxArabAscii = Integer.toString(ArabDigitCondition.MAX_ARAB_DIGIT.getValue()).getBytes(StandardCharsets.UTF_8);
-        boolean isTermArabDigit = false;
-        for (char i : termSymbols) {
-            int minArabAsciiValue = minArabAscii[0];
-            int maxArabAsciiValue = maxArabAscii[0];
-            if ((int) i >= minArabAsciiValue & (int) i <= maxArabAsciiValue) {
-                isTermArabDigit = true;
-            }
-            return isTermArabDigit;
+    public static boolean isTermArabDigit(String term)  {
+        int minArab = ArabDigitCondition.MIN_ARAB_DIGIT.getValue();
+        int maxArab = ArabDigitCondition.MAX_ARAB_DIGIT.getValue();
+        try {
+            int a = Integer.parseInt(term);
+
+            return a >= minArab & a <= maxArab;
+        } catch (NumberFormatException e) {
         }
-        return isTermArabDigit;
+        return false;
     }
 
     public static boolean isTermFromRomeDigits(String term) {
@@ -49,7 +45,9 @@ public class Checker {
                 isTermRomeNumber = true;
                 return isTermRomeNumber;
             } catch (MyException e) {
+                System.out.println("недопустимый ввод римского числа");
                 throw new MyException("недопустимый ввод римского числа");
+
             }
         }
         return isTermRomeNumber;
@@ -126,8 +124,6 @@ public class Checker {
                 if (symbolsOperation[0] == a) {
                     isOperationInConditions = true;
                     return isOperationInConditions;
-                } else {
-                    throw new MyException("несоответствующий оператор");
                 }
             }
         } else {
