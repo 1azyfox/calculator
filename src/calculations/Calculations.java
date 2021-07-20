@@ -2,20 +2,21 @@ package calculations;
 
 import operation.Operation;
 
-public class Calculations {
+public class Calculations{
+
     public static int add(int firstTerm, int secondTerm) {
         return firstTerm + secondTerm;
     }
 
-    public static int substract(int firstTerm, int secondTerm) {
+    public static int subtract(int firstTerm, int secondTerm) {
         return firstTerm - secondTerm;
     }
 
-    public static int mult(int firstTerm, int secondTerm) {
+    public static int multiply(int firstTerm, int secondTerm) {
         return firstTerm * secondTerm;
     }
 
-    public static double divide(int firstTerm, int secondTerm) {
+    public static int divide(int firstTerm, int secondTerm) {
         return firstTerm / secondTerm;
     }
 
@@ -24,12 +25,11 @@ public class Calculations {
         if (operationNumber == Operation.ADD.ordinal()) {
             answer = Calculations.add(firstTerm, secondTerm);
         } else if (operationNumber == Operation.SUBTRACT.ordinal()) {
-            answer = Calculations.substract(firstTerm, secondTerm);
+            answer = Calculations.subtract(firstTerm, secondTerm);
         } else if (operationNumber == Operation.MULTIPLY.ordinal()) {
-            answer = Calculations.mult(firstTerm, secondTerm);
+            answer = Calculations.multiply(firstTerm, secondTerm);
         } else if (operationNumber == Operation.DIVIDE.ordinal()) {
-            double answer1 = Calculations.divide(firstTerm, secondTerm);
-            answer = (int) answer1;
+            answer = Calculations.divide(firstTerm, secondTerm);
         }
         return answer;
     }
