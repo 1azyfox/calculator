@@ -1,7 +1,13 @@
+package transfer;
+
+import exceptions.CalculatorExceptions;
+import operation.FindOperation;
+import rome.RomeNumber;
+
 import java.nio.charset.StandardCharsets;
 
 public class Transfer {
-    public static int romeToArabTransfer(String term) throws MyException {
+    public static int romeToArabTransfer(String term) throws CalculatorExceptions {
         byte[] asciiTerm = term.getBytes(StandardCharsets.US_ASCII);
         int sumTerm = 0;
         for (int i : asciiTerm) {
@@ -22,27 +28,36 @@ public class Transfer {
             if (sumTerm == y) {
                 if (sumTerm == RomeNumber.IV.getAsciiSum() & sumTerm == RomeNumber.VI.getAsciiSum()) {
                     if (asciiTerm[0] == RomeNumber.I.getAsciiSum()) {
-                        arabDigit = (FindOperation.findNumberInArray(romeNumberAsciiArray, sumTerm));
+                        arabDigit = (findNumberInArray(romeNumberAsciiArray, sumTerm));
                         return arabDigit;
                     } else if (asciiTerm[0] == RomeNumber.V.getAsciiSum()) {
                         arabDigit = 6;
                         return arabDigit;
                     }
                 }
-                arabDigit = (FindOperation.findNumberInArray(romeNumberAsciiArray, sumTerm));
+                arabDigit = (findNumberInArray(romeNumberAsciiArray, sumTerm));
             }
         }
         if (arabDigit == 0) {
-            throw new MyException("неверный ввод римского числа");
+            throw new CalculatorExceptions(CalculatorExceptions.ROME_NUMBER_INSERT_WRONG);
         }
         return arabDigit;
     }
 
-    public static StringBuilder arabToRomeTransfer(int answer) throws MyException {
+    public static int findNumberInArray(int[] inArray, int needFind) {
+        for (int i = 0; i < inArray.length; i++) {
+            if (needFind == inArray[i]) {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
+
+    public static StringBuilder arabToRomeTransfer(int answer) throws CalculatorExceptions {
         StringBuilder sb = new StringBuilder();
         int a = answer / 10;
         if (answer == 0) {
-            throw new MyException("невозможно вывести ноль в римских числах");
+            throw new CalculatorExceptions(CalculatorExceptions.ROME_ZERO_DOES_NOT_EXIST);
         }
         if (a <= 3) {
             for (int i = 0; i < a; i++) {

@@ -1,3 +1,5 @@
+package operation;
+
 public class FindOperation {
     public static int getOperationNumber(String operation) {
         int operationNumber = 0;
@@ -20,15 +22,6 @@ public class FindOperation {
             }
         }
         return operationNumber;
-    }
-
-    public static int findNumberInArray(int[] inArray, int needFind) {
-        for (int i = 0; i < inArray.length; i++) {
-            if (needFind == inArray[i]) {
-                return i + 1;
-            }
-        }
-        return 0;
     }
 }
 

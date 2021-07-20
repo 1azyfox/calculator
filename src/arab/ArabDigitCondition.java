@@ -1,3 +1,5 @@
+package arab;
+
 public enum ArabDigitCondition {
     MIN_ARAB_DIGIT(1), MAX_ARAB_DIGIT(10);
 

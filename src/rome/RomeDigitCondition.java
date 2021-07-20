@@ -1,3 +1,5 @@
+package rome;
+
 public enum RomeDigitCondition {
     I(73),V(86),X(88);
 
