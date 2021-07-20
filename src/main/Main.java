@@ -41,8 +41,6 @@ public class Main {
                 } catch (NoSuchElementException e) {
                     System.err.println("Недопустимый ввод" + "\nВыход из программы");
 //                    System.exit(0);
-                } finally {
-                    expression.close();
                 }
             } else if (expressionString.equals("quit")) {
                 System.out.println("Выход...");
@@ -59,8 +57,6 @@ public class Main {
                 } catch (NoSuchElementException ex) {
                     System.err.println("Недопустимый ввод" + "\nВыход из программы");
 //                        System.exit(0);
-                } finally {
-                    expression.close();
                 }
             }
         }

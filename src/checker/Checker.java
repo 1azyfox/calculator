@@ -100,16 +100,12 @@ public class Checker {
     }
 
     public static boolean isArabTermInt(String a) throws CalculatorExceptions, NumberFormatException {
-//        try {
         double term = Double.parseDouble(a);
         if (term % 1 == 0) {
             return true;
         } else {
             throw new CalculatorExceptions(CalculatorExceptions.ARAB_NUMBER_NOT_INTEGER);
         }
-//        } catch (NumberFormatException e) {
-//            throw new CalculatorExceptions("неверный ввод числа");
-//        }
     }
 
     public static boolean isArabTermInConditions(String a) throws CalculatorExceptions {
@@ -130,14 +126,13 @@ public class Checker {
                 a = operation1.getOperationSymbol();
                 if (symbolsOperation[0] == a) {
                     isOperationInConditions = true;
-                    return isOperationInConditions;
-                } else {
-                    throw new CalculatorExceptions(CalculatorExceptions.OPERATION_INSERT_WRONG);
+                    break;
                 }
             }
+            if (!isOperationInConditions) throw new CalculatorExceptions(CalculatorExceptions.OPERATION_INSERT_WRONG);
+            return isOperationInConditions;
         } else {
             throw new CalculatorExceptions(CalculatorExceptions.OPERATION_INSERT_WRONG);
         }
-        return isOperationInConditions;
     }
 }
