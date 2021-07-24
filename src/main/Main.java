@@ -24,23 +24,23 @@ public class Main {
                 } catch (CalculatorExceptions e) {
                     if (e.code == 1) {
                         System.err.println("Неверный ввод римского числа");
-//                System.exit(0);
+                System.exit(0);
                     } else if (e.code == 2) {
                         System.err.println("Неверный ввод операции");
-//                System.exit(0);
+                System.exit(0);
                     } else if (e.code == 3) {
                         System.err.println("Введено не целое число");
-//                System.exit(0);
+                System.exit(0);
                     } else if (e.code == 4) {
                         System.err.println("Несовпадающий формат выражений");
-//                System.exit(0);
+                System.exit(0);
                     } else if (e.code == 5) {
                         System.err.println("Введенное число за пределами вычислений программы");
-//                System.exit(0);
+                System.exit(0);
                     }
                 } catch (NoSuchElementException e) {
                     System.err.println("Недопустимый ввод" + "\nВыход из программы");
-//                    System.exit(0);
+                    System.exit(0);
                 }
             } else if (expressionString.equals("quit")) {
                 System.out.println("Выход...");
@@ -53,10 +53,10 @@ public class Main {
                     }
                 } catch (CalculatorExceptions e) {
                     System.err.println("Неверный ввод" + "\nВыход из программы");
-//                        System.exit(0);
+                        System.exit(0);
                 } catch (NoSuchElementException ex) {
                     System.err.println("Недопустимый ввод" + "\nВыход из программы");
-//                        System.exit(0);
+                        System.exit(0);
                 }
             }
         }
