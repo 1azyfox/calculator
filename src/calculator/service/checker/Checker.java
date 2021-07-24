@@ -1,11 +1,11 @@
-package checker;
+package calculator.service.checker;
 
-import arab.ArabDigitCondition;
-import exceptions.CalculatorExceptions;
-import insert.InsertDto;
-import operation.Operation;
-import rome.RomeNumber;
-import transfer.Transfer;
+import calculator.service.digit.arab.ArabDigitCondition;
+import calculator.exception.CalculatorExceptions;
+import calculator.dto.InsertDto;
+import calculator.operation.Operation;
+import calculator.service.digit.rome.RomeNumber;
+import calculator.service.transfer.Transfer;
 
 import java.nio.charset.StandardCharsets;
 

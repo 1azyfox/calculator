@@ -1,6 +1,6 @@
-package exceptions;
+package calculator.exception;
 
-public class CalculatorExceptions extends Exception {
+public class CalculatorExceptions extends RuntimeException {
 
     public final static int ROME_NUMBER_INSERT_WRONG = 1;
     public final static int OPERATION_INSERT_WRONG = 2;

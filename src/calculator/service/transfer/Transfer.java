@@ -1,8 +1,7 @@
-package transfer;
+package calculator.service.transfer;
 
-import exceptions.CalculatorExceptions;
-import operation.FindOperation;
-import rome.RomeNumber;
+import calculator.exception.CalculatorExceptions;
+import calculator.service.digit.rome.RomeNumber;
 
 import java.nio.charset.StandardCharsets;
 
@@ -53,7 +52,7 @@ public class Transfer {
         return 0;
     }
 
-    public static StringBuilder arabToRomeTransfer(int answer) throws CalculatorExceptions {
+    public static String arabToRomeTransfer(int answer) throws CalculatorExceptions {
         StringBuilder sb = new StringBuilder();
         int a = answer / 10;
         if (answer == 0) {
@@ -167,6 +166,6 @@ public class Transfer {
                 }
             }
         }
-        return sb;
+        return sb.toString();
     }
 }

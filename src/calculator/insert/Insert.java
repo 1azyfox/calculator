@@ -1,4 +1,7 @@
-package insert;
+package calculator.insert;
+
+
+import calculator.dto.InsertDto;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -10,6 +13,5 @@ public class Insert {
             String operation = scanner.next();
             String secondTerm = scanner.next();
         return new InsertDto(firstTerm,operation,secondTerm);
-
     }
 }

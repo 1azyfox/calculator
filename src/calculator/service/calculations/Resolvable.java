@@ -1,4 +1,4 @@
-package calculations;
+package calculator.service.calculations;
 
 public interface Resolvable {
     static int add(int firstTerm, int secondTerm){
